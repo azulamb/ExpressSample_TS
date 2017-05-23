@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+var Version={vcode:-1,version:'-',suffix:'_'};
+function Goodbye(){location.replace('/');}
+function VersionCheck(){return fetch('/api/',{method:'POST',credentials:'include'}).then((r)=>{if(!r.ok){throw false;}return r.json();}).then((r)=>{if(0<=Version.vcode&&Version.vcode<r.vcode){throw false;}Version.vcode=r.vcode;Version.version=r.version;Version.suffix=r.suffix;}).catch((e)=>{Goodbye()});}
+if(typeof fetch!=='function'){Goodbye();}else{VersionCheck();}
+</script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script src="./app.js"></script>
+</head>
+<body>
+<article>
+<a href="/auth/logout">Logout</a>
+</article>
+<footer>Copyright &copy; 20XX YOURNAME All Rights Reserved.</footer>
+</body>
+</html>
